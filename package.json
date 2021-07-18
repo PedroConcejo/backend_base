@@ -1,0 +1,43 @@
+{
+  "name": "TheAgileMonkeys-API-CRM",
+  "version": "1.0.0",
+  "description": "REST API to manage customer data for a small shop.",
+  "main": "index.js",
+  "scripts": {
+    "seed": "node seed.js",
+    "dev": "nodemon index.js",
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PedroConcejo/TheAgileMonkeys-API-CRM.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PedroConcejo/TheAgileMonkeys-API-CRM/issues"
+  },
+  "homepage": "https://github.com/PedroConcejo/TheAgileMonkeys-API-CRM#readme",
+  "dependencies": {
+    "bcrypt": "^4.0.1",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.11.15",
+    "morgan": "^1.9.1",
+    "nodemon": "^2.0.2"
+  },
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "eslint-config-standard": "^14.1.0",
+    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-node": "^11.0.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "mongoose-seed": "^0.6.0",
+    "standard": "^14.3.3"
+  }
+}
