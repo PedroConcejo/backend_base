@@ -1,7 +1,15 @@
 
 const router = require('express').Router()
 
-const profileRouter = require('./profile.router')
+const {
+  getMe,
+  updateUser,
+  deleteMe,
+  changePassword
+} = require('../controllers/me.controller')
 
-router.use('/profile', profileRouter)
+router.get('/', getMe)
+router.put('/', updateUser)
+router.delete('/', deleteMe)
+router.put('/password', changePassword)
 module.exports = router

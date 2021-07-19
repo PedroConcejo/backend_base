@@ -48,15 +48,18 @@ Hit CTRL-C to stop the server
 
 ### USER MODEL
 
-| KEY      | TYPE   | REQUIRED | VALIDATIONS  | DEFAULT   |
-| -------- | ------ | -------- | ------------ | -------   |
-| name     | String | true     |              |
-| surname  | String | true     |              |
-| photo    | String | true     |              |
-| email    | String | true     | regex(email  |
-| role     | String | true     | user/admin   | user      |
-| password | String | true     | min(6)       |
-| createdAt| Number | true     |              | Date.now()|
+| KEY            | TYPE   | REQUIRED | VALIDATIONS  | DEFAULT   | ENUM       |
+| -------------- | ------ | -------- | ------------ | -------   |----------- |
+| name           | String | true     |              |           |            |
+| surname        | String | true     |              |           |            |
+| photo          | String | true     |              |           |            |
+| email          | String | true     | regex(email) |           |            | 
+| nie            | String | true     | regex(nie)   |           |            |
+| password       | String |          | min(6)       |           |            |
+| role           | String | true     |              | user      | user/admin |
+| createdAt      | Number |          |              | Date.now()|            |
+| createdBy      | String | true     |              |           |            |
+| lastModifiedBy | String |          |              | ''        |            |
 
 
 ## API ROUTES
@@ -64,69 +67,37 @@ Hit CTRL-C to stop the server
 Please note that all routes in this API should be called with the `/api` prefix before the endpoint:
 
 ```
-POST http://DOMAIN/api/auth/signup
+POST http://DOMAIN/api/URL
 ```
 
 ### AUTHENTICATION ENDPOINTS
 
 > TOKEN Required: NO
 
-| METHOD | URL           | What does it do      | PARAMS                             |
-| ------ | ------------- | -------------------- | ---------------------------------- |
-| POST   | `auth/signup` | Create a new user    | role = `user` (default), `partner` |
-| POST   | `auth/login`  | Authenticates a user |
+| METHOD | URL           | What does it do      | Body                 |
+| ------ | ------------- | -------------------- | -------------------- |
+| POST   | `auth/signup` | Create a new user    | user model           |
+| POST   | `auth/login`  | Authenticates a user | email and password   |
 
-### PARTNERS ENDPOINTS
-
-> TOKEN Required: NO
-
-| METHOD | URL             | What does it do |
-| ------ | --------------- | --------------- |
-| GET    | `/partners`     | Get All Partner | query = location |
-| GET    | `/partners/:id` | Get One Partner |
-
-### USER ENDPOINTS
+### ME ENDPOINTS
 
 > TOKEN Required: YES
 
-| METHOD | URL   | What does it do   |
-| ------ | ----- | ----------------- |
-| PUT    | `/me` | Update My Profile |
-| GET    | `/me` | Get My Profile    |
-| DELETE | `/me` | Delete My Profile |
+| METHOD | URL            | What does it do   | Body                 |
+| ------ | -------------- | ----------------- | -------------------- |
+| PUT    | `/me`          | Update My Profile | fields to modify     |
+| GET    | `/me`          | Get My Profile    |                      |
+| DELETE | `/me`          | Delete My Profile |                      |
+| PUT    | `/me/password` | Delete My Profile | new and old password |
 
-### ME ROOMS ENDPOINTS
+### USERS ENDPOINTS
 
 > TOKEN Required: YES
+> ROLE = admin required
 
-| METHOD | URL            | What does it do       |
-| ------ | -------------- | --------------------- |
-| GET    | `me/rooms`     | Get Rooms I have open |
-| POST   | `me/rooms`     | Create Room           |
-| GET    | `me/rooms/:id` | Get Room Message      |
-| DELETE | `me/rooms/:id` | Delete Room           |
-| POST   | `me/rooms/:id` | Create Message        |
-
-### ME STYLES ENDPOINTS
-
-> TOKEN Required: YES ROLE: PARTNER
-
-| METHOD | URL             | What does it do        |
-| ------ | --------------- | ---------------------- |
-| GET    | `me/styles`     | Get All Partner Styles |
-| POST   | `me/styles`     | Create Style           |
-| DELETE | `me/styles/:id` | Delete Style           |
-| GET    | `me/styles/:id` | Get One Style          |
-| PUT    | `me/styles/:id` | Update Style           |
-
-### RATING ENDPOINTS
-
-> TOKEN Required: YES ROLE: PARTNER
-
-| METHOD | URL              | What does it do          |
-| ------ | ---------------  | ----------------------   |
-| GET    | `me/ratings`     | Get All Partner ratings |
-| POST   | `me/ratings`     | Create Rating           |
-| DELETE | `me/ratings/:id` | Delete Rating           |
-| GET    | `me/ratings/:id` | Get One Rating          |
-| PUT    | `me/ratings/:id` | Update Rating           |
+| METHOD | URL            | What does it do       | Params               | Body                 |
+| ------ | -------------- | --------------------- | -------------------- | -------------------- |
+| GET    | `users`        | Get all users         |                      |                      |
+| GET    | `users/:id`    | Get user by id        | user id              |                      |
+| POST   | `users/:id`    | Update user by id     | user id              | fields to modify     |
+| DELETE | `users/:id`    | Delete user by id     | user id              |                      |
