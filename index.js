@@ -1,5 +1,23 @@
 process.stdout.write('\x1B[2J\x1B[0f') // Clear terminal screen
 require('dotenv').config()
+var dbName = 'TheAgileMonkeys'
+switch (process.env.NODE_ENV) {
+  case 'dev':
+    dbName = process.env.MONGO_DB_DEV
+    break
+  case 'staging':
+    dbName = process.env.MONGO_DB_STAGING
+    break
+  case 'production':
+    dbName = process.env.MONGO_DB_PRODUCTION
+    break
+  case 'test':
+    dbName = process.env.MONGO_DB_TEST
+    break
+  default:
+    dbName = process.env.MONGO_DB_DEV
+    break
+}
 
 const express = require('express')
 const cors = require('cors')
@@ -10,7 +28,7 @@ const path = require('path')
 // NONGOOSE
 mongoose.connect(process.env.MONGO_URL,
   {
-    dbName: process.env.MONGO_DB || 'TheAgileMonkeys',
+    dbName: dbName,
     useNewUrlParser: true,
     useCreateIndex: true,
     useUnifiedTopology: true
@@ -29,10 +47,12 @@ const app = express()
   .disable('etag')
 // Init server
 const PORT = process.env.PORT || 2222
-app.listen(PORT, (err) => {
+const server = app.listen(PORT, (err) => {
   if (err) { throw new Error(err) }
   console.info('>'.repeat(40))
   console.info('💻  The Agile Monkeys Program Server Live')
   console.info(`📡  PORT: http://localhost:${PORT}`)
   console.info('>'.repeat(40) + '\n')
 })
+
+module.exports = { mongoose, server }

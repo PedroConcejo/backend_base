@@ -72,7 +72,7 @@ function roleControl (req, res, next) {
 function whoIs (req) {
   return new Promise((resolve, reject) => {
     jwt.verify(req.headers.token, process.env.SECRET, (_err, token) => {
-      resolve(token.email)
+      resolve(token)
     })
   })
 }

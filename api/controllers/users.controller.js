@@ -32,8 +32,8 @@ function deleteUserById (req, res) {
 function updateUser (req, res) {
   var body = req.body
   whoIs(req)
-    .then((adminEmail) => {
-      (body.lastModifiedBy = adminEmail)
+    .then((userLogged) => {
+      (body.lastModifiedBy = userLogged.email)
       UserModel
         .findByIdAndUpdate(req.params.id, body, {
           new: true,

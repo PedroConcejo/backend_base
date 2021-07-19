@@ -15,6 +15,7 @@ const errorCodes =
   ERROR_NIE_NOT_VALID: 'ER-0111',
   ERROR_WRONG_PASSWORD: 'ER-0112',
   ERROR_WRONG_EMAIL: 'ER-0113',
+  ERROR_PARAMS_CAN_NOT_BE_EMPTY: 'ER-0114',
 }
 
 const errorMessage =
@@ -27,10 +28,13 @@ const errorMessage =
   ERROR_EMAIL_NOT_VALID: 'Not valid email',
   ERROR_NAME_IS_REQUIRED: 'Name is required',
   ERROR_SURNAME_IS_REQUIRED: 'Surname is required',
+  ERROR_PHOTO_IS_REQUIRED: 'Photo is required',
+  ERROR_EMAIL_IS_REQUIRED: 'Email is required',
   ERROR_NIE_IS_REQUIRED: 'Nie is required',
   ERROR_NIE_NOT_VALID: 'Not valid nie',
   ERROR_WRONG_PASSWORD: 'Wrong password for ',
   ERROR_WRONG_EMAIL: 'Wrong email ',
+  ERROR_PARAMS_CAN_NOT_BE_EMPTY: 'Paramms can not be empty',
 }
 
 module.exports = {

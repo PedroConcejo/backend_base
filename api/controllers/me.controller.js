@@ -19,10 +19,9 @@ function getMe (req, res) {
 }
 function updateUser (req, res) {
   var body = req.body
-  console.log(res.locals.user.email)
   whoIs(req)
-    .then((adminEmail) => {
-      (body.lastModifiedBy = adminEmail)
+    .then((userInfo) => {
+      (body.lastModifiedBy = userInfo.email)
       UserModel
         .findByIdAndUpdate(res.locals.user._id, body, {
           new: true,

@@ -10,11 +10,29 @@ module.exports = {
 }
 
 function signup (req, res) {
+  if (Object.keys(req.body).length === 0) {
+    return res.status(403).json({
+      error: {
+        msg: errorsList.errorMessage.ERROR_PARAMS_CAN_NOT_BE_EMPTY,
+        code: errorsList.errorCodes.ERROR_PARAMS_CAN_NOT_BE_EMPTY
+      }
+    })
+  }
   if (req.headers.token) {
     whoIs(req)
-      .then((adminEmail) => signUp(req, res, adminEmail))
+      .then((adminEmail) => {
+        if (adminEmail.role !== 'admin') {
+          return res.status(403).json({
+            error: {
+              msg: errorsList.errorMessage.ERROR_ROLE_NOT_VALID,
+              code: errorsList.errorCodes.ERROR_ROLE_NOT_VALID
+            }
+          })
+        }
+        signUp(req, res, adminEmail)
+      })
   } else {
-    signUp(req, res, req.body.email)
+    signUp(req, res, req.body)
   }
 }
 
@@ -22,7 +40,7 @@ function login (req, res) {
   UserModel.findOne({ email: req.body.email })
     .then(user => {
       if (!user) {
-        return res.json({
+        return res.status(403).json({
           error: {
             msg: errorsList.errorMessage.ERROR_WRONG_EMAIL + req.body.email,
             code: errorsList.errorCodes.ERROR_WRONG_EMAIL
@@ -33,7 +51,7 @@ function login (req, res) {
       bcrypt.compare(req.body.password, user.password, (err, result) => {
         if (err) { handleError(err, res) }
         if (!result) {
-          return res.json({
+          return res.status(403).json({
             error: {
               msg: errorsList.errorMessage.ERROR_WRONG_PASSWORD + req.body.email,
               code: errorsList.errorCodes.ERROR_WRONG_PASSWORD
@@ -65,7 +83,7 @@ const signUp = (req, res, createdBy) => {
     password: hashedPwd,
     role: req.body.role,
     nie: req.body.nie,
-    createdBy: createdBy
+    createdBy: createdBy.email
   }
 
   UserModel.create(userBody)
