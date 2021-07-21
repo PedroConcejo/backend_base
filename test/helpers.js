@@ -57,7 +57,16 @@ const loginWrongPass = {
 }
 
 const SignUpEmpty = {
-    password: '123456'
-  }
+  password: '123456'
+}
 
-module.exports = { users, newUser, loginAdmin, loginUser, loginWrongEmail, loginWrongPass, SignUpEmpty }
+const newUserName = {
+  name: 'Manolo'
+}
+
+const changePassword = {
+  actualPassword: '123456',
+  newPassword: '654321'
+}
+
+module.exports = { users, newUser, loginAdmin, loginUser, loginWrongEmail, loginWrongPass, SignUpEmpty, newUserName, changePassword }

@@ -48,7 +48,7 @@ function changePassword (req, res) {
           return handleError(err)
         }
         if (!result) {
-          return res.json({
+          return res.status(403).json({
             error: {
               msg: errorsList.errorMessage.ERROR_WRONG_PASSWORD + user.name,
               code: errorsList.errorCodes.ERROR_WRONG_PASSWORD

@@ -44,13 +44,6 @@ test('LogIn user with admin role', async () => {
   token = reponse.body.token
 })
 
-test('Get all users', async () => {
-  const response = await api
-    .get('/api/users')
-    .set('token', token)
-  expect(response.body).toHaveLength(users.length)
-})
-
 test('SignUp new user', async () => {
   await api
     .post('/api/auth/signup')
@@ -82,29 +75,6 @@ test('LogIn wrong password', async () => {
     error: {
       msg: errorsList.errorMessage.ERROR_WRONG_PASSWORD + loginWrongPass.email,
       code: errorsList.errorCodes.ERROR_WRONG_PASSWORD
-    }
-  })
-})
-
-test('LogIn user without admin role', async () => {
-  const reponse = await api
-    .post('/api/auth/login')
-    .send(loginUser)
-    .expect(200)
-    .expect('Content-Type', /application\/json/)
-  token = reponse.body.token
-})
-
-test('SignUp error not admin role trying to create new user', async () => {
-  const response = await api
-    .post('/api/auth/signup')
-    .set('token', token)
-    .send(newUser)
-    .expect(403)
-  expect(JSON.parse(response.error.text)).toStrictEqual({
-    error: {
-      msg: errorsList.errorMessage.ERROR_ROLE_NOT_VALID,
-      code: errorsList.errorCodes.ERROR_ROLE_NOT_VALID
     }
   })
 })
@@ -152,7 +122,36 @@ test('SignUp error some required parameters are missing', async () => {
       createdBy: {}
     }
   })
-  console.log(response.error.text)
+})
+
+test('LogIn user without admin role', async () => {
+  const reponse = await api
+    .post('/api/auth/login')
+    .send(loginUser)
+    .expect(200)
+    .expect('Content-Type', /application\/json/)
+  token = reponse.body.token
+})
+
+test('SignUp error not admin role trying to create new user', async () => {
+  const response = await api
+    .post('/api/auth/signup')
+    .set('token', token)
+    .send(newUser)
+    .expect(403)
+  expect(JSON.parse(response.error.text)).toStrictEqual({
+    error: {
+      msg: errorsList.errorMessage.ERROR_ROLE_NOT_VALID,
+      code: errorsList.errorCodes.ERROR_ROLE_NOT_VALID
+    }
+  })
+})
+
+test('Get all users', async () => {
+  const response = await api
+    .get('/api/users')
+    .set('token', token)
+  expect(response.body).toHaveLength(users.length + 1)
 })
 
 afterAll(async () => {
