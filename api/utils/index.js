@@ -77,9 +77,46 @@ function whoIs (req) {
   })
 }
 
+async function uploadImage (req, res, next) {
+  var photoNames = ['normal', 'eyes', 'mouth']
+  const random = Math.floor(Math.random() * photoNames.length)
+  var photo = photoNames[random]
+  const imagen = './public/' + photo + '.png'
+  var admin = require('firebase-admin')
+  var uuid = require('uuid-v4')
+  var serviceAccount = require('../../public/serviceAccount.json')
+  if (!admin.apps.length) {
+    admin.initializeApp({
+      credential: admin.credential.cert(serviceAccount),
+      databaseURL: 'https://the-agile-monkeys.firebaseio.com',
+      storageBucket: 'the-agile-monkeys.appspot.com'
+    })
+  }
+  admin.database()
+  const bucket = admin.storage().bucket()
+
+  const response = await bucket.upload(imagen, {
+    destination: 'images/' + photo + Math.round(Math.random() * 10000) + '.png',
+    gzip: true,
+    metadata: {
+      metadata: {
+        // This line is very important. It's to create a download token.
+        firebaseStorageDownloadTokens: uuid()
+      },
+      cacheControl: 'public, max-age=31536000',
+      contentType: 'image/png'
+    }
+  })
+  var file = response[0]
+  var token = file.metadata.metadata.firebaseStorageDownloadTokens
+  var url = 'https://firebasestorage.googleapis.com/v0/b/' + 'the-agile-monkeys.appspot.com' + '/o/' + encodeURIComponent(file.name) + '?alt=media&token=' + token
+  return url
+}
+
 module.exports = {
   authUser,
   handleError,
   roleControl,
-  whoIs
+  whoIs,
+  uploadImage
 }

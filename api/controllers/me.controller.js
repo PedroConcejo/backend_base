@@ -1,14 +1,14 @@
 const UserModel = require('../models/users.model')
 const bcrypt = require('bcrypt')
 const errorsList = require('../diccionario/errores')
-
-const { handleError, whoIs } = require('../utils')
+const { handleError, whoIs, uploadImage } = require('../utils')
 
 module.exports = {
   getMe,
   updateUser,
   deleteMe,
-  changePassword
+  changePassword,
+  updateUserPhoto
 }
 
 function getMe (req, res) {
@@ -64,4 +64,16 @@ function changePassword (req, res) {
       })
     })
     .catch((err) => handleError(err, res))
+}
+
+function updateUserPhoto (req, res) {
+  uploadImage().then(url => {
+    UserModel
+      .findByIdAndUpdate(res.locals.user._id, { photo: url }, {
+        new: true,
+        runValidators: true
+      })
+      .then(response => res.json(response))
+      .catch((err) => handleError(err, res))
+  })
 }

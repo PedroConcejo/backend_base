@@ -6,12 +6,7 @@ const UsersModel = require('../api/models/users.model')
 const errorsList = require('../api/diccionario/errores')
 const {
   users,
-  newUser,
-  loginAdmin,
   loginUser,
-  loginWrongEmail,
-  loginWrongPass,
-  SignUpEmpty,
   newUserName,
   changePassword
 } = require('./helpers')

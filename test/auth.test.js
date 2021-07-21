@@ -107,10 +107,6 @@ test('SignUp error some required parameters are missing', async () => {
         msg: errorsList.errorMessage.ERROR_SURNAME_IS_REQUIRED,
         code: errorsList.errorCodes.ERROR_SURNAME_IS_REQUIRED
       },
-      photo: {
-        msg: errorsList.errorMessage.ERROR_PHOTO_IS_REQUIRED,
-        code: errorsList.errorCodes.ERROR_PHOTO_IS_REQUIRED
-      },
       email: {
         msg: errorsList.errorMessage.ERROR_EMAIL_IS_REQUIRED,
         code: errorsList.errorCodes.ERROR_EMAIL_IS_REQUIRED
