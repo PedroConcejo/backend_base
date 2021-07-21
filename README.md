@@ -37,7 +37,9 @@ $ npm run start
 ```
 
 To start the server in a different environment, use:
+```
 $ npm run **environment**
+```
 
 You can choose one of the following environments:
 - dev
@@ -55,7 +57,9 @@ Hit CTRL-C to stop the server
 ```
 
 To run test use:
+```
 $ npm run test
+```
 
 ## MODELS
 
