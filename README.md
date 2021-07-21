@@ -9,8 +9,6 @@ The first time you start the server you may want to make sure you have the depen
 $ npm install
 ```
 
-npm i cross-env
-
 ### Environment Variables
 
 The next setup step is to create an `Environment Variable` file `.env` in this folder. We have provided a `.env.example` for you with a sample configuration for both **development** and **production** environments.
