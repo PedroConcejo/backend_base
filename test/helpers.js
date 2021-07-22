@@ -1,7 +1,6 @@
 const users = [{
   name: 'Pedro',
   surname: 'Concejo',
-  photo: 'https://picsum.photos/200',
   email: 'pedro@theagilemonkeys.com',
   nie: '78548019Y',
   password: '123456',
@@ -10,7 +9,6 @@ const users = [{
 {
   name: 'Luis',
   surname: 'Cabrera',
-  photo: 'https://picsum.photos/200',
   email: 'luis@theagilemonkeys.com',
   nie: '78548020Y',
   password: '123456',
@@ -19,7 +17,6 @@ const users = [{
 {
   name: 'Victoria',
   surname: 'Vera',
-  photo: 'https://picsum.photos/200',
   email: 'victoria@theagilemonkeys.com',
   nie: '78548022Y',
   password: '123456',
@@ -30,7 +27,6 @@ const users = [{
 const newUser = {
   name: 'Laura',
   surname: 'Martinez',
-  photo: 'https://picsum.photos/200',
   email: 'laura@theagilemonkeys.com',
   nie: '78548021Y',
   password: '123456',
