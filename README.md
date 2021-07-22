@@ -9,6 +9,17 @@ The first time you start the server you may want to make sure you have the depen
 $ npm install
 ```
 
+### Previous Requirements
+
+You need to have a mongoDB server.
+If you don't have it installed, you can follow the steps on their official website according to your OS in the following url:
+
+- https://docs.mongodb.com/manual/administration/install-community/
+
+You can also install the mongoDB interface, mongoDB compass in the following url:
+
+- https://docs.mongodb.com/compass/current/
+
 ### Environment Variables
 
 The next setup step is to create an `Environment Variable` file `.env` in this folder. We have provided a `.env.example` for you with a sample configuration for both **development** and **production** environments.
@@ -26,7 +37,7 @@ And customize the sample params to your needs
 - PORT=3000
 - SECRET="mySecretIsSafeWithYourCode"
 
-## Start local Server
+### Start local Server
 
 You can start your server anytime with:
 
@@ -113,7 +124,7 @@ POST http://DOMAIN/api/URL
 | DELETE | `users/:id`      | Delete user by id     | user id              |                      | token, role = admin  |
 
 
-## CREATE DEFAULT DATABASE
+### CREATE DEFAULT DATABASE
 
 You can generate a default database in your server anytime with:
 
