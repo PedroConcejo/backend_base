@@ -111,3 +111,14 @@ POST http://DOMAIN/api/URL
 | POST   | `users/:id`      | Update user by id     | user id              | fields to modify     | token, role = admin  |
 | POST   | `users/photo/:id`| Update user photo     | attach img as img    | fields to modify     | token, role = admin  |
 | DELETE | `users/:id`      | Delete user by id     | user id              |                      | token, role = admin  |
+
+
+## CREATE DEFAULT DATABASE
+
+You can generate a default database in your server anytime with:
+
+```
+$ npm run seed
+```
+
+You can find the users information in the file `./users.json`
