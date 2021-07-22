@@ -67,7 +67,7 @@ $ npm run test
 | -------------- | ------ | -------- | ------------ | -------   |----------- |
 | name           | String | true     |              |           |            |
 | surname        | String | true     |              |           |            |
-| photo          | String | true     |              |           |            |
+| photo          | String |          |              |           |            |
 | email          | String | true     | regex(email) |           |            | 
 | nie            | String | true     | regex(nie)   |           |            |
 | password       | String |          | min(6)       |           |            |
@@ -97,15 +97,17 @@ POST http://DOMAIN/api/URL
 | METHOD | URL            | What does it do   | Body                 | Required             |
 | ------ | -------------- | ----------------- | -------------------- | -------------------- |
 | PUT    | `/me`          | Update My Profile | fields to modify     | token                |
+| PUT    | `/me/photo`    | Upload Photo      | attach img as img    | token                |
 | GET    | `/me`          | Get My Profile    |                      | token                |
 | DELETE | `/me`          | Delete My Profile |                      | token                |
-| PUT    | `/me/password` | Delete My Profile | new and old password | token                |
+| PUT    | `/me/password` | Change password   | new and old password | token                |
 
 ### USERS ENDPOINTS
 
-| METHOD | URL            | What does it do       | Params               | Body                 | Required             |
-| ------ | -------------- | --------------------- | -------------------- | -------------------- | -------------------- |
-| GET    | `users`        | Get all users         |                      |                      | token                |
-| GET    | `users/:id`    | Get user by id        | user id              |                      | token, role = admin  |
-| POST   | `users/:id`    | Update user by id     | user id              | fields to modify     | token, role = admin  |
-| DELETE | `users/:id`    | Delete user by id     | user id              |                      | token, role = admin  |
+| METHOD | URL              | What does it do       | Params               | Body                 | Required             |
+| ------ | --------------   | --------------------- | -------------------- | -------------------- | -------------------- |
+| GET    | `users`          | Get all users         |                      |                      | token                |
+| GET    | `users/:id`      | Get user by id        | user id              |                      | token, role = admin  |
+| POST   | `users/:id`      | Update user by id     | user id              | fields to modify     | token, role = admin  |
+| POST   | `users/photo/:id`| Update user photo     | attach img as img    | fields to modify     | token, role = admin  |
+| DELETE | `users/:id`      | Delete user by id     | user id              |                      | token, role = admin  |

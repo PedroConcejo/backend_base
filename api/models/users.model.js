@@ -10,8 +10,7 @@ const userSchema = new mongoose.Schema({
     required: [true, 'ERROR_SURNAME_IS_REQUIRED']
   },
   photo: {
-    type: String,
-    required: [true, 'ERROR_PHOTO_IS_REQUIRED']
+    type: String
   },
   email: {
     type: String,

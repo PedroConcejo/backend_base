@@ -78,10 +78,7 @@ function whoIs (req) {
 }
 
 async function uploadImage (req, res, next) {
-  var photoNames = ['normal', 'eyes', 'mouth']
-  const random = Math.floor(Math.random() * photoNames.length)
-  var photo = photoNames[random]
-  const imagen = './public/' + photo + '.png'
+  const imagen = './public/' + req
   var admin = require('firebase-admin')
   var uuid = require('uuid-v4')
   var serviceAccount = require('../../public/serviceAccount.json')
@@ -96,7 +93,7 @@ async function uploadImage (req, res, next) {
   const bucket = admin.storage().bucket()
 
   const response = await bucket.upload(imagen, {
-    destination: 'images/' + photo + Math.round(Math.random() * 10000) + '.png',
+    destination: 'images/' + req,
     gzip: true,
     metadata: {
       metadata: {
@@ -110,6 +107,8 @@ async function uploadImage (req, res, next) {
   var file = response[0]
   var token = file.metadata.metadata.firebaseStorageDownloadTokens
   var url = 'https://firebasestorage.googleapis.com/v0/b/' + 'the-agile-monkeys.appspot.com' + '/o/' + encodeURIComponent(file.name) + '?alt=media&token=' + token
+  const fs = require('fs')
+  fs.unlinkSync(imagen)
   return url
 }
 

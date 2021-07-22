@@ -14,6 +14,7 @@ const {
 let connection
 var token = 'Token sin añadir'
 var userId = 'Id sin añadir'
+var tokenEmail = 'Email sin añadir'
 
 beforeAll(async () => {
   connection = await MongoClient.connect(process.env.MONGO_URL, {
@@ -40,6 +41,7 @@ test('LogIn user for test', async () => {
     .expect(200)
     .expect('Content-Type', /application\/json/)
   token = response.body.token
+  tokenEmail = response.body.email
   userId = response.body._id
 })
 
@@ -58,6 +60,15 @@ test('Modify me', async () => {
     .send(newUserName)
     .expect(200)
   expect(response.body.name).toBe(newUserName.name)
+})
+
+test('Upload photo', async () => {
+  const response = await api
+    .put('/api/me/photo')
+    .set('token', token)
+    .attach('img', './public/normal.png')
+    .expect(200)
+  expect(response.body.lastModifiedBy).toBe(tokenEmail)
 })
 
 test('Change password', async () => {

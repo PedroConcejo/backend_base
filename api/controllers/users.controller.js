@@ -1,11 +1,12 @@
 const UserModel = require('../models/users.model')
-const { handleError, whoIs } = require('../utils')
+const { handleError, whoIs, uploadImage } = require('../utils')
 
 module.exports = {
   getAllUsers,
   getUserById,
   deleteUserById,
-  updateUser
+  updateUser,
+  updateUserPhoto
 }
 
 function getAllUsers (req, res) {
@@ -42,4 +43,22 @@ function updateUser (req, res) {
         .then(response => res.json(response))
         .catch((err) => handleError(err, res))
     })
+}
+
+function updateUserPhoto (req, res) {
+  var body = req.body
+  uploadImage(req.file.filename).then(url => {
+    (body.photo = url)
+    whoIs(req)
+      .then((userLogged) => {
+        (body.lastModifiedBy = userLogged.email)
+        UserModel
+          .findByIdAndUpdate(req.params.id, body, {
+            new: true,
+            runValidators: true
+          })
+          .then(response => res.json(response))
+          .catch((err) => handleError(err, res))
+      })
+  })
 }
