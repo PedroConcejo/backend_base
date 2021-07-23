@@ -42,6 +42,8 @@ const app = express()
   .use(cors())
   .use(morgan('combined'))
   .use(express.json())
+  .use(express.json())
+  .use(express.urlencoded({ extended: true })) // support encoded bodie s
   .use(express.static(path.join(__dirname, 'public')))
   .use('/api', require('./api/routes'))
   .disable('etag')
