@@ -126,7 +126,7 @@ POST http://DOMAIN/api/URL
 
 ### CREATE DEFAULT DATABASE
 
-You can generate a default database in your server anytime with:
+You can generate a default database in your developer server anytime with:
 
 ```
 $ npm run seed
