@@ -85,7 +85,7 @@ $ npm run test
 | role           | String | true     |              | user      | user/admin |
 | createdAt      | Number |          |              | Date.now()|            |
 | createdBy      | String | true     |              |           |            |
-| lastModifiedBy | String |          |              | ''        |            |
+| lastModifiedBy | String |          |              |           |            |
 
 
 ## API ROUTES
