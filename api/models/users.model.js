@@ -49,12 +49,12 @@ const userSchema = new mongoose.Schema({
     default: Date.now()
   },
   createdBy: {
-    type: String,
-    required: true
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'user'
   },
   lastModifiedBy: {
-    type: String,
-    default: ''
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'user'
   }
 })
 

@@ -20,8 +20,8 @@ function signup (req, res) {
   }
   if (req.headers.token && req.headers.token !== 'null') {
     whoIs(req)
-      .then((adminEmail) => {
-        if (adminEmail.role !== 'admin') {
+      .then((userInfo) => {
+        if (userInfo.role !== 'admin') {
           return res.status(403).json({
             error: {
               msg: errorsList.errorMessage.ERROR_ROLE_NOT_VALID,
@@ -29,10 +29,13 @@ function signup (req, res) {
             }
           })
         }
-        signUp(req, res, adminEmail)
+        UserModel.findOne({ email: userInfo.email })
+          .then(user => {
+            signUp(req, res, user.id)
+          })
       })
   } else {
-    signUp(req, res, req.body)
+    signUp(req, res)
   }
 }
 
@@ -82,12 +85,27 @@ const signUp = (req, res, createdBy) => {
     email: req.body.email,
     password: hashedPwd,
     role: req.body.role,
-    nie: req.body.nie,
-    createdBy: createdBy.email
+    nie: req.body.nie
+  }
+
+  if (createdBy) {
+    userBody.createdBy = createdBy
   }
 
   UserModel.create(userBody)
     .then(() => {
+      if (createdBy === undefined) {
+        console.log(req.body.email)
+        UserModel.findOne({ email: req.body.email })
+          .then(user => {
+            console.log(user._id)
+            UserModel
+              .findByIdAndUpdate(user._id, { createdBy: user._id }, {
+                new: true,
+                runValidators: true
+              }).then(() => {})
+          })
+      }
       const userData = {
         username: req.body.name,
         email: req.body.email,

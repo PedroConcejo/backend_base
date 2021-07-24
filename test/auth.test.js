@@ -114,8 +114,7 @@ test('SignUp error some required parameters are missing', async () => {
       nie: {
         msg: errorsList.errorMessage.ERROR_NIE_IS_REQUIRED,
         code: errorsList.errorCodes.ERROR_NIE_IS_REQUIRED
-      },
-      createdBy: {}
+      }
     }
   })
 })

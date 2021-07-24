@@ -2,7 +2,7 @@ const UserModel = require('../models/users.model')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const errorsList = require('../diccionario/errores')
-const { handleError, whoIs, uploadImage } = require('../utils')
+const { handleError, uploadImage } = require('../utils')
 
 module.exports = {
   getMe,
@@ -30,17 +30,14 @@ function updateUser (req, res) {
       }
     })
   }
-  whoIs(req)
-    .then((userInfo) => {
-      (body.lastModifiedBy = userInfo.email)
-      UserModel
-        .findByIdAndUpdate(res.locals.user._id, body, {
-          new: true,
-          runValidators: true
-        })
-        .then(response => res.json(response))
-        .catch((err) => handleError(err, res))
+  (body.lastModifiedBy = res.locals.user._id)
+  UserModel
+    .findByIdAndUpdate(res.locals.user._id, body, {
+      new: true,
+      runValidators: true
     })
+    .then(response => res.json(response))
+    .catch((err) => handleError(err, res))
 }
 
 function deleteMe (req, res) {
@@ -70,7 +67,7 @@ function changePassword (req, res) {
         }
         const newPassword = bcrypt.hashSync(req.body.newPassword, 10)
         user.password = newPassword
-        user.lastModifiedBy = res.locals.user.email
+        user.lastModifiedBy = res.locals.user._id
         user.save()
           .then(response => res.json(response))
           .catch((err) => handleError(err, res))
@@ -83,7 +80,7 @@ function updateUserPhoto (req, res) {
   checkUser(req, res)
   uploadImage(req.file.filename).then(url => {
     UserModel
-      .findByIdAndUpdate(res.locals.user._id, { photo: url }, {
+      .findByIdAndUpdate(res.locals.user._id, { photo: url, lastModifiedBy: res.locals.user._id }, {
         new: true,
         runValidators: true
       })

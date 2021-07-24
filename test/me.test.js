@@ -68,7 +68,7 @@ test('Upload photo', async () => {
     .set('token', token)
     .attach('img', './public/normal.png')
     .expect(200)
-  expect(response.body.lastModifiedBy).toBe(tokenEmail)
+  expect(response.body.photo).toContain('firebasestorage.googleapis.com')
 })
 
 test('Change password', async () => {

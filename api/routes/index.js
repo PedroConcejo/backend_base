@@ -7,7 +7,7 @@ const meRouter = require('./me.router')
 const { authUser, roleControl, uploadImage } = require('../utils')
 
 router.use('/auth', authRouter)
-router.use('/users', usersRouter)
+router.use('/users', authUser, usersRouter)
 router.use('/me', authUser, meRouter)
 
 router.get('/whoami', authUser, (req, res) => {
