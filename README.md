@@ -133,3 +133,9 @@ $ npm run seed
 ```
 
 You can find the users information in the file `./users.json`
+
+To work with this database, you have to run the development server with:
+
+```
+$ npm run dev
+```
