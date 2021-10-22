@@ -1,6 +1,6 @@
 process.stdout.write('\x1B[2J\x1B[0f') // Clear terminal screen
 require('dotenv').config()
-var dbName = 'TheAgileMonkeys'
+var dbName = 'Backend_Name'
 switch (process.env.NODE_ENV) {
   case 'dev':
     dbName = process.env.MONGO_DB_DEV
@@ -51,7 +51,7 @@ const PORT = process.env.PORT || 2222
 const server = app.listen(PORT, (err) => {
   if (err) { throw new Error(err) }
   console.info('>'.repeat(40))
-  console.info('💻  The Agile Monkeys Program Server Live')
+  console.info('💻  Backend Program Server Live')
   console.info(`📡  PORT: http://localhost:${PORT}`)
   console.info('>'.repeat(40) + '\n')
 })

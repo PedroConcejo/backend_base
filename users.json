@@ -4,7 +4,7 @@
       "name": "Pedro",
       "surname": "Concejo",
       "photo": "https://picsum.photos/200",
-      "email": "pedro@theagilemonkeys.com",
+      "email": "pedro@backend.com",
       "password": "pedro1234",
       "role": "admin",
       "nie": "78548019Y"
@@ -13,7 +13,7 @@
       "name": "Luis",
       "surname": "Cabrera",
       "photo": "https://picsum.photos/200",
-      "email": "luis@theagilemonkeys.com",
+      "email": "luis@backend.com",
       "password": "$2b$10$cCFrJrSZi9nmTryrki/ps.hLGML7ZnqzLJmfO6yLs3NClKpRZyfCe",
       "nie": "78548020Y"
     },
@@ -21,7 +21,7 @@
       "name": "Maria",
       "surname": "Garcia",
       "photo": "https://picsum.photos/200",
-      "email": "maria@theagilemonkeys.com",
+      "email": "maria@backend.com",
       "password": "maria1234",
       "nie": "78548021Y"
     },
@@ -29,7 +29,7 @@
       "name": "Laura",
       "surname": "Fuente",
       "photo": "https://picsum.photos/200",
-      "email": "laura@theagilemonkeys.com",
+      "email": "laura@backend.com",
       "password": "laura1234",
       "nie": "78548022Y"
     },
@@ -37,7 +37,7 @@
       "name": "Juan",
       "surname": "Perez",
       "photo": "https://picsum.photos/200",
-      "email": "juan@theagilemonkeys.com",
+      "email": "juan@backend.com",
       "password": "juan1234",
       "nie": "78548023Y"
     }

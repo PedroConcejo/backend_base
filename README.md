@@ -1,4 +1,4 @@
-# TheAgileMonkeys-API-CRM
+# Backend-Base-API-CRM
 REST API to manage customer data for a small shop.
 
 ### Install & Update Dependencies
@@ -33,7 +33,7 @@ $ cp .env.example .env
 And customize the sample params to your needs
 
 - MONGO_URL="mongodb://localhost:27017/"
-- MONGO_DB="TheAgileMonkeys"
+- MONGO_DB="Backend_Name"
 - PORT=3000
 - SECRET="mySecretIsSafeWithYourCode"
 

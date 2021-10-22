@@ -1,7 +1,7 @@
 const users = [{
   name: 'Pedro',
   surname: 'Concejo',
-  email: 'pedro@theagilemonkeys.com',
+  email: 'pedro@backend.com',
   nie: '78548019Y',
   password: '123456',
   role: 'admin'
@@ -9,7 +9,7 @@ const users = [{
 {
   name: 'Luis',
   surname: 'Cabrera',
-  email: 'luis@theagilemonkeys.com',
+  email: 'luis@backend.com',
   nie: '78548020Y',
   password: '123456',
   role: 'user'
@@ -17,7 +17,7 @@ const users = [{
 {
   name: 'Victoria',
   surname: 'Vera',
-  email: 'victoria@theagilemonkeys.com',
+  email: 'victoria@backend.com',
   nie: '78548022Y',
   password: '123456',
   role: 'user'
@@ -27,28 +27,28 @@ const users = [{
 const newUser = {
   name: 'Laura',
   surname: 'Martinez',
-  email: 'laura@theagilemonkeys.com',
+  email: 'laura@backend.com',
   nie: '78548021Y',
   password: '123456',
   role: 'user'
 }
 
 const loginAdmin = {
-  email: 'pedro@theagilemonkeys.com',
+  email: 'pedro@backend.com',
   password: '123456'
 }
 
 const loginUser = {
-  email: 'luis@theagilemonkeys.com',
+  email: 'luis@backend.com',
   password: '123456'
 }
 
 const loginWrongEmail = {
-  email: 'paco@theagilemonkeys.com',
+  email: 'paco@backend.com',
   password: '123456'
 }
 const loginWrongPass = {
-  email: 'luis@theagilemonkeys.com',
+  email: 'luis@backend.com',
   password: '654321'
 }
 
